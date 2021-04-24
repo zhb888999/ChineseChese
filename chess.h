@@ -1,14 +1,14 @@
-#ifndef CHESE_CHESE_H
-#define CHESE_CHESE_H
+#ifndef CHINESE_CHESS_H
+#define CHINESE_CHESS_H
 
 #define CANVAS_SIZE 657
 #define BOARD_SIZE 91
 
-/* chese term */
+/* chesS term */
 #define RED  0
 #define BLACK 8
 
-/* chese type */
+/* chesS type */
 #define NONE 0b000      // 空
 #define KING 0b001      // 帅
 #define ADVISER 0b010   // 仕
@@ -20,7 +20,7 @@
 
 /* move error code */
 #define NO_ERROR 0
-#define NO_CHESE 1
+#define NO_CHESS 1
 #define SAME_TEAM 2
 #define TEAM_ERROR 3
 #define OUT_OF_BOUNDS 4
@@ -30,13 +30,13 @@
 #define BREAK_THE_RULE 8
 #define SAME_POSITION 9
 
-#define init_chese(TEAM, TYPE) (TEAM + TYPE)
-#define get_team(CHESE) (CHESE & 0x8)
-#define get_type(CHESE) (CHESE & 0x7)
+#define init_chess(TEAM, TYPE) (TEAM + TYPE)
+#define get_team(CHESS) (CHESS & 0x8)
+#define get_type(CHESS) (CHESS & 0x7)
 #define get_state(STATE) (STATE & 0x1)
 
 typedef unsigned char board;
-typedef unsigned char chese;
+typedef unsigned char chess;
 typedef unsigned char team;
 typedef unsigned char type;
 typedef unsigned char state;
@@ -46,7 +46,7 @@ board *create();
 
 void destory(board *);
 
-char *chese2srting(chese);
+char *chess2srting(chess);
 
 canvas *draw_board(const board *, canvas *);
 
@@ -64,4 +64,4 @@ void clear_canvas(canvas *);
 
 void destory_canvas(canvas *);
 
-#endif //CHESE_CHESE_H
+#endif //CHESE_CHESS_H

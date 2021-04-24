@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "chese.h"
+#include "chess.h"
 #pragma warning(disable:4996)
 
 int main() {

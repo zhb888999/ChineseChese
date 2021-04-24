@@ -1,40 +1,40 @@
 #include <string.h>
 #include <stdlib.h>
-#include "chese.h"
+#include "chess.h"
 
 void init(board *pboard) {
     int i, step;
     for (i = 0; i < BOARD_SIZE; i++) *(pboard + i) = 0;
     for (i = 0; i < 2; i++) {
         step = 8;
-        *(pboard + i * step) = init_chese(RED, CHARIOT);
-        *(pboard + 81 + i * step) = init_chese(BLACK, CHARIOT);
+        *(pboard + i * step) = init_chess(RED, CHARIOT);
+        *(pboard + 81 + i * step) = init_chess(BLACK, CHARIOT);
 
         step = 6;
-        *(pboard + 1 + i * step) = init_chese(RED, HORSE);
-        *(pboard + 82 + i * step) = init_chese(BLACK, HORSE);
+        *(pboard + 1 + i * step) = init_chess(RED, HORSE);
+        *(pboard + 82 + i * step) = init_chess(BLACK, HORSE);
 
         step = 4;
-        *(pboard + 2 + i * step) = init_chese(RED, ELEPHANT);
-        *(pboard + 83 + i * step) = init_chese(BLACK, ELEPHANT);
+        *(pboard + 2 + i * step) = init_chess(RED, ELEPHANT);
+        *(pboard + 83 + i * step) = init_chess(BLACK, ELEPHANT);
 
         step = 2;
-        *(pboard + 3 + i * step) = init_chese(RED, ADVISER);
-        *(pboard + 84 + i * step) = init_chese(BLACK, ADVISER);
+        *(pboard + 3 + i * step) = init_chess(RED, ADVISER);
+        *(pboard + 84 + i * step) = init_chess(BLACK, ADVISER);
 
         step = 6;
-        *(pboard + 19 + i * step) = init_chese(RED, CANNON);
-        *(pboard + 64 + i * step) = init_chese(BLACK, CANNON);
+        *(pboard + 19 + i * step) = init_chess(RED, CANNON);
+        *(pboard + 64 + i * step) = init_chess(BLACK, CANNON);
     }
     for (i = 0; i < 5; i++) {
-        *(pboard + 27 + i * 2) = init_chese(RED, PAWN);
-        *(pboard + 54 + i * 2) = init_chese(BLACK, PAWN);
+        *(pboard + 27 + i * 2) = init_chess(RED, PAWN);
+        *(pboard + 54 + i * 2) = init_chess(BLACK, PAWN);
     }
-    *(pboard + 4) = init_chese(RED, KING);
-    *(pboard + 85) = init_chese(BLACK, KING);
+    *(pboard + 4) = init_chess(RED, KING);
+    *(pboard + 85) = init_chess(BLACK, KING);
 }
 
-char *chese2string(chese ch) {
+char *chess2string(chess ch) {
     switch (ch) {
         case 0b0001:
             return "˧";
@@ -78,7 +78,7 @@ canvas *draw_board(const board *pboard, canvas *dest) {
     clear_canvas(dest);
     for (int j = 0; j < 10; j++) {
         for (int i = 0; i < 9; i++) {
-            strcat(dest, chese2string(*(pboard + j * 9 + i)));
+            strcat(dest, chess2string(*(pboard + j * 9 + i)));
             if (i == 8) break;
             strcat(dest, "--");
         }
@@ -276,7 +276,7 @@ int move(unsigned int src, unsigned int dst, board *pboard) {
     type src_type = get_type(*(pboard + src));
     type dst_type = get_type(*(pboard + dst));
 
-    if (src_type == NONE) return NO_CHESE;
+    if (src_type == NONE) return NO_CHESS;
     if (src_team != cur_team) return TEAM_ERROR;
     if (dst_type != NONE && src_team == dst_team) return SAME_TEAM;
 
